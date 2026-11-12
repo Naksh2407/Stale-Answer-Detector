@@ -1,0 +1,8 @@
+{
+  "37d82cd1692bf1320ca8ea3044a16b832c185decf7dd66800e6866610b4f5a4b": "[{\"text\": \"The Pro plan costs $20 per month.\", \"type\": \"pricing\", \"subject\": \"Pro plan\"}, {\"text\": \"includes 10GB of storage\", \"type\": \"other\", \"subject\": \"Pro plan\"}, {\"text\": \"The v2 API is the current version for this service.\", \"type\": \"api_version\", \"subject\": \"v2 API\"}]",
+  "c1bf84d531d1d02841cec25458a082d3ae04c203e75a66f767ba3d756377d1e6": "{\"verdict\": \"contradicted\", \"current_value\": \"$30/month\", \"reason\": \"Acme's pricing page lists the Pro plan at $30/month, not $20.\", \"source_indices\": [0]}",
+  "e6de1f791b6f2d5d40aa291715e4953cb36446957631e93aafa4bced1dc78cf2": "{\"verdict\": \"confirmed\", \"current_value\": \"v2\", \"reason\": \"Acme API docs state v2 is the current version.\", \"source_indices\": [0]}",
+  "7d3e12d0bf8395e06ec0f34cd44245fc45e87fcce68ac7e001d4cdafe8e9a933": "[{\"text\": \"The latest version of the API is v1.0, which supports webhooks.\", \"type\": \"api_version\", \"subject\": \"API\"}, {\"text\": \"The older v2 API has been deprecated.\", \"type\": \"api_version\", \"subject\": \"v2 API\"}]",
+  "2b58cf191f4c6790303ebcf573169fadb88083075b05234e0be5ac05371e59e0": "{\"verdict\": \"contradicted\", \"current_value\": \"v3.0\", \"reason\": \"Acme API docs list v3.0 as the current version; v1.0 is deprecated.\", \"source_indices\": [0]}",
+  "645fa3a32669c6fa8c5ef47e3f48134af8551b7414959ed5d089a9c893ddee27": "{\"verdict\": \"confirmed\", \"current_value\": \"v2 deprecated\", \"reason\": \"Acme API docs confirm v2 was deprecated in March 2026.\", \"source_indices\": [0]}"
+}

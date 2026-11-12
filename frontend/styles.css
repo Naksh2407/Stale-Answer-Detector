@@ -1,0 +1,39 @@
+/* Score colors */
+.mark-green { background-color: #d4edda; color: #155724; }
+.mark-amber { background-color: #fff3cd; color: #856404; }
+.mark-red { background-color: #f8d7da; color: #721c24; }
+.mark-gray { background-color: #e2e6ea; color: #383d41; }
+
+/* Highlighted text container */
+#highlighted {
+    margin: 20px 0;
+    min-height: 40px;
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    background: #fff;
+    white-space: pre-wrap;
+}
+
+/* Claim list */
+#claims {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+#claims li {
+    margin: 8px 0;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#claims li:hover {
+    border-color: #c6c6c6;
+}
+
+.COLORS { } /* inlined via JS */

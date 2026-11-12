@@ -1,0 +1,9 @@
+# Backend
+fastapi
+uvicorn
+python-dotenv
+openai
+tavily-python
+pydantic
+pydantic-settings
+requests

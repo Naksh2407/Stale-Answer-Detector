@@ -1,0 +1,26 @@
+# Logs
+*.log
+*.db
+
+# Environment
+.env
+*.env.local
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# Claude
+.claude/
+
+# Output
+cache.sqlite

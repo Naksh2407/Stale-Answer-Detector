@@ -1,0 +1,38 @@
+{
+  "timing_seconds": 0.5,
+  "overall_freshness": 50,
+  "claims": [
+    {
+      "id": "c1",
+      "text": "The Pro plan costs $20 per month.",
+      "type": "pricing",
+      "span": [0, 33],
+      "score": 0,
+      "verdict": "contradicted",
+      "reason": "Acme's pricing page lists the Pro plan at $30/month, not $20.",
+      "current_value": "$30/month",
+      "sources": [
+        {
+          "title": "Acme Pricing Plans",
+          "url": "https://acme.example.com/pricing"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "text": "The v2 API is the current version for this service.",
+      "type": "api_version",
+      "span": [68, 119],
+      "score": 100,
+      "verdict": "confirmed",
+      "reason": "Acme API docs state v2 is the current version.",
+      "current_value": "v2",
+      "sources": [
+        {
+          "title": "Acme API Documentation",
+          "url": "https://acme.example.com/docs/api"
+        }
+      ]
+    }
+  ]
+}

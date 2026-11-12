@@ -1,0 +1,1 @@
+The Pro plan costs $20 per month and includes 10GB of storage. The v2 API is the current version for this service.

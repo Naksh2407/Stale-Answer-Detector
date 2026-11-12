@@ -1,0 +1,23 @@
+{
+  "4486027cd972c63d02cdea26ebc0ec66dcad48899f59a9b9fa91f595e239bf49": [
+    {
+      "title": "Acme Pricing Plans",
+      "url": "https://acme.example.com/pricing",
+      "content": "Pro plan: $30 per month. Includes 10GB storage and priority support. Updated November 2026."
+    }
+  ],
+  "634619df125c84f40bd172bb004518b4cd28850d44aaae8fd509036ec3ecde55": [
+    {
+      "title": "Acme API Documentation",
+      "url": "https://acme.example.com/docs/api",
+      "content": "API v2 is the current version. v1 was deprecated in March 2026. The latest stable version is v2."
+    }
+  ],
+  "10d2cbf8b5cee1479fdd6a4d7ee9994f3ed44b7acbc397e64b4658854f3fc3b4": [
+    {
+      "title": "Acme API Documentation",
+      "url": "https://acme.example.com/docs/api",
+      "content": "The current API version is v3.0, released September 2026. v1.0 is deprecated. v2 is also deprecated."
+    }
+  ]
+}

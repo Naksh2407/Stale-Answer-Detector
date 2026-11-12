@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stale-Answer Detector</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Stale-Answer Detector</h1>
+    <p>A tool to check AI-generated answers for outdated information</p>
+
+    <div class="container">
+        <textarea id="answer" placeholder="Paste an AI-generated answer here..." rows="4" cols="80"></textarea>
+        <button id="check">Check Freshness</button>
+    </div>
+
+    <div class="container">
+        <div id="status">Ready</div>
+        <div id="overall">Freshness: --/100</div>
+
+        <div id="highlighted"></div>
+
+        <h3>Claim Details</h3>
+        <ul id="claims"></ul>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
