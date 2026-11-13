@@ -3,27 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stale-Answer Detector</title>
+    <title>Stale-Answer Detector — AI Truth & Freshness Diagnostics</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Stale-Answer Detector</h1>
-    <p>A tool to check AI-generated answers for outdated information</p>
+    <div class="app-shell">
+        <!-- Sidebar: History & Stats -->
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-glyph">⚡</span>
+                <span class="brand-name">TruthGuard</span>
+            </div>
 
-    <div class="container">
-        <textarea id="answer" placeholder="Paste an AI-generated answer here..." rows="4" cols="80"></textarea>
-        <button id="check">Check Freshness</button>
+            <div class="sidebar-section">
+                <span class="section-title">Telemetry</span>
+                <div class="metric-row">
+                    <span>Total Audits</span>
+                    <strong id="stat-total" class="mono">--</strong>
+                </div>
+                <div class="metric-row">
+                    <span>Mean Freshness</span>
+                    <strong id="stat-avg" class="mono">--%</strong>
+                </div>
+                <div class="metric-row">
+                    <span>Stale Flagged</span>
+                    <strong id="stat-stale" class="mono text-rose">--</strong>
+                </div>
+            </div>
+
+            <div class="sidebar-section flex-grow">
+                <div class="section-header">
+                    <span class="section-title">Audit History</span>
+                    <button id="clear-history" class="text-btn">Clear</button>
+                </div>
+                <div id="history-list" class="history-list">
+                    <div class="empty-hint">No recent audits</div>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="status-pill">
+                    <span id="status-dot" class="dot"></span>
+                    <span id="status-text">Connecting to gateway...</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="workspace">
+            <header class="workspace-header">
+                <div class="title-group">
+                    <h1>Stale-Answer Detector</h1>
+                    <p class="subtitle">Real-time verification of time-sensitive claims against live web sources.</p>
+                </div>
+                <div class="header-actions">
+                    <select id="preset-select" class="btn btn-secondary">
+                        <option value="" disabled selected>📂 Load Preset Sample...</option>
+                        <option value="pricing">Pricing Sample ($20 Pro Plan)</option>
+                        <option value="api">API Version Sample (v1.0 Deprecated)</option>
+                    </select>
+                </div>
+            </header>
+
+            <div class="input-pane">
+                <div class="input-tabs">
+                    <button class="tab-btn active" data-tab="text">Text Input</button>
+                    <button class="tab-btn" data-tab="url">URL Scrape</button>
+                </div>
+
+                <div id="tab-text" class="tab-content active">
+                    <div class="textarea-wrapper">
+                        <textarea id="answer-input" placeholder="Paste LLM-generated response containing pricing, api versions, or factual assertions..." spellcheck="false"></textarea>
+                        <div class="textarea-footer">
+                            <span id="char-count" class="mono">0 / 8000</span>
+                            <div class="textarea-actions">
+                                <button id="clear-btn" class="text-btn">Clear</button>
+                                <button id="check-btn" class="btn btn-primary">
+                                    <span>Execute Audit</span>
+                                    <div class="spinner hidden"></div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-url" class="tab-content hidden">
+                    <div class="textarea-wrapper url-wrapper">
+                        <input type="url" id="url-input" placeholder="https://example.com/ai-generated-answer-page" />
+                        <div class="textarea-footer">
+                            <span class="mono">Extract & Audit Web Page</span>
+                            <button id="check-url-btn" class="btn btn-primary">
+                                <span>Scrape & Audit</span>
+                                <div class="spinner hidden"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results-section" class="results-section hidden">
+                <!-- Summary Banner -->
+                <div id="summary-banner" class="summary-banner">
+                    <span id="summary-text">Freshness summary loading...</span>
+                </div>
+
+                <div class="results-grid">
+                    <!-- Left: Highlighted Source Text -->
+                    <div class="pane source-pane">
+                        <div class="pane-header">
+                            <h2>Source Verification</h2>
+                            <span id="timing-badge" class="badge mono">0.0s</span>
+                        </div>
+                        <div id="highlighted-output" class="highlighted-box"></div>
+                    </div>
+
+                    <!-- Right: Freshness Score & Claim Breakdown -->
+                    <div class="pane evidence-pane">
+                        <div class="score-card">
+                            <div class="score-display">
+                                <span id="score-number" class="mono">--</span>
+                                <span class="score-unit">/100</span>
+                            </div>
+                            <div class="score-meta">
+                                <span id="score-verdict" class="score-title">Awaiting Audit</span>
+                                <p id="score-desc" class="score-subtitle">Claims verified against real-time search.</p>
+                            </div>
+                        </div>
+
+                        <div class="pane-header">
+                            <h2>Extracted Claims</h2>
+                        </div>
+                        <div id="claims-list" class="claims-list"></div>
+                    </div>
+                </div>
+
+                <!-- Corrected Answer Rewrite Pane -->
+                <div id="rewrite-pane" class="pane rewrite-pane hidden">
+                    <div class="pane-header">
+                        <h2>Copy-Corrected Answer Rewrite</h2>
+                        <button id="copy-rewrite-btn" class="btn btn-secondary">Copy Corrected Text</button>
+                    </div>
+                    <div id="corrected-output" class="corrected-box mono"></div>
+                </div>
+            </div>
+        </main>
     </div>
 
-    <div class="container">
-        <div id="status">Ready</div>
-        <div id="overall">Freshness: --/100</div>
-
-        <div id="highlighted"></div>
-
-        <h3>Claim Details</h3>
-        <ul id="claims"></ul>
-    </div>
+    <!-- Interactive Tooltip -->
+    <div id="tooltip" class="tooltip hidden"></div>
 
     <script src="app.js"></script>
 </body>

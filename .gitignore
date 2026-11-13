@@ -24,3 +24,4 @@ venv/
 
 # Output
 cache.sqlite
+backend/app/history.json

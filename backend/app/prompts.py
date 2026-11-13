@@ -28,3 +28,24 @@ Decide whether the sources confirm, contradict, or don't clearly address the cla
 Return ONLY JSON:
 {{"verdict": "confirmed|contradicted|unclear", "current_value": "value from sources or null", "reason": "one sentence citing the source", "source_indices": [0]}}
 """
+
+SUMMARY_PROMPT = """Given the original answer and the verified claims with their verdicts, write a brief, one-sentence summary sentence describing the overall freshness state (e.g., "2 of 3 checkable claims are out of date", or "All checkable claims are fully up to date").
+
+If no checkable claims exist, say "No checkable claims found".
+
+Claims:
+{claims_json}
+
+Return ONLY the summary sentence as plain text.
+"""
+
+REWRITE_PROMPT = """You are an expert technical editor. Rewrite the given AI answer so that all contradicted or outdated claims are corrected with their current verified values from the audit results. Keep the tone identical to the original answer.
+
+Original Answer:
+{answer}
+
+Audit Results (Claims with Current Values):
+{claims_json}
+
+Return ONLY the fully corrected answer text, with no extra commentary or markdown fencing. Do not include any reasoning, labels, or analysis. Just the corrected text.
+"""

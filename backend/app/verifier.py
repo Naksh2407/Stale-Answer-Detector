@@ -62,5 +62,5 @@ def _verdict(claim, verdict, current_value, reason, sources):
         "verdict": verdict if verdict in ALLOWED else "unclear",
         "current_value": current_value,
         "reason": reason,
-        "sources": [{"title": s["title"], "url": s["url"]} for s in sources],
+        "sources": [{"title": s.get("title", ""), "url": s.get("url", ""), "published_date": s.get("published_date", "Unknown")} for s in sources],
     }

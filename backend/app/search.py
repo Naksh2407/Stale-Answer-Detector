@@ -42,7 +42,12 @@ def search(query: str, max_results: int = 5) -> list[dict]:
 
     resp = _get_tavily().search(query=query, max_results=max_results)
     results = [
-        {"title": r.get("title", ""), "url": r.get("url", ""), "content": r.get("content", "")}
+        {
+            "title": r.get("title", ""),
+            "url": r.get("url", ""),
+            "content": r.get("content", ""),
+            "published_date": r.get("published_date") or r.get("pub_date") or "Unknown"
+        }
         for r in resp.get("results", [])
     ]
     cache.set("search", query, results)
